@@ -2,26 +2,23 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      nodejs: 18
     commands:
-      - echo Installing dependencies...
-      - npm install
+      - echo "Install phase working"
+
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 838180512863.dkr.ecr.us-east-2.amazonaws.com/brain-task-app
+      - echo "Pre-build phase working"
+
   build:
     commands:
-      - echo Build started on `date`
-      - npm run build
-      - echo Building Docker image...
-      - docker build -t brain-task-app .
-      - docker tag brain-task-app:latest 838180512863.dkr.ecr.us-east-2.amazonaws.com/brain-task-app:latest
+      - echo "Build phase working"
+      - echo "Hello, CodeBuild! This is a test build."
+
   post_build:
     commands:
-      - echo Pushing Docker image to ECR...
-      - docker push 838180512863.dkr.ecr.us-east-2.amazonaws.com/brain-task-app:latest
+      - echo "Post-build phase working"
+      - echo "Build completed successfully"
+
 artifacts:
   files:
     - '**/*'
